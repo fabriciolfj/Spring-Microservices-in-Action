@@ -39,3 +39,4 @@ Para um ambiente dockerized, se a preferência de instancia por ip do eureka.
 ```
 eureka.instance.preferIpAddress = true 
 ```
+##### Padrões de resiliência
