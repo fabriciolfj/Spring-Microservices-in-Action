@@ -1,0 +1,12 @@
+management:
+  endpoints:
+    web:
+      base-path: /
+    enabled-by-default: false
+    health.enabled: true
+    health.show-details: true
+  health:
+    db:
+      enabled: false
+    diskspace:
+      enabled: true

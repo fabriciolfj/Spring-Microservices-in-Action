@@ -1,12 +1,12 @@
-package com.fabriciolfj.github.licensingservice;
+package com.fabriciolfj.github.configserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-//@SpringBootTest
-class LicensingServiceApplicationTests {
+@SpringBootTest
+class ConfigserverApplicationTests {
 
-	//@Test
+	@Test
 	void contextLoads() {
 	}
 
