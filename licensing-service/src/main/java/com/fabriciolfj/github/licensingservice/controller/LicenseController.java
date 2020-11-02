@@ -17,10 +17,12 @@ public class LicenseController {
     private final LicenseService licenseService;
 
 
-    @GetMapping("/{licenseId}")
-    public ResponseEntity<License> getLicense(@PathVariable("organizationId") final String organizationId, @PathVariable("licenseId") final String licenseId) {
-        var license = licenseService.getLicense(licenseId, organizationId);
-        license.add(linkTo(methodOn(LicenseController.class).getLicense(organizationId, license.getLicenseId())).withSelfRel(),
+    @GetMapping("/{licenseId}/{clientId}")
+    public ResponseEntity<License> getLicense(@PathVariable("organizationId") final String organizationId,
+                                              @PathVariable("licenseId") final String licenseId,
+                                              @PathVariable("clientId") final String clientId) {
+        var license = licenseService.getLicense(licenseId, organizationId, clientId);
+        license.add(linkTo(methodOn(LicenseController.class).getLicense(organizationId, license.getLicenseId(), null)).withSelfRel(),
                 linkTo(methodOn(LicenseController.class).createLicense(license)).withRel("createLicense"),
                 linkTo(methodOn(LicenseController.class).updateLicense(license)).withRel("updateLicense"),
                 linkTo(methodOn(LicenseController.class).deleteLicense(licenseId)).withRel("deleteLicense"));
