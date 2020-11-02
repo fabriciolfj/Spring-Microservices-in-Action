@@ -35,3 +35,7 @@ Ao utilizar o openfeign, não encessita de configuração adicional, mas ao util
         return new RestTemplate();
     }
 ```
+Para um ambiente dockerized, se a preferência de instancia por ip do eureka.
+```
+eureka.instance.preferIpAddress = true 
+```
