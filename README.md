@@ -40,3 +40,9 @@ Para um ambiente dockerized, se a preferência de instancia por ip do eureka.
 eureka.instance.preferIpAddress = true 
 ```
 ##### Padrões de resiliência
+São implementados no cliente chamando um recurso remoto.
+ 
+- client-side load balancing -> balanceamento de carga do lado do cliente, onde este possui uma lista de instâncias em caching, quando detectado uma instância com erro, a mesma é retirada dessa lista.
+- Circuit breaker -> abre-se quando ocorre um número de falhas na chamada do serviço remoto, chamando o serviço alternativo enquano aberto e o original quando fechado.
+- fallback -> serviço alternativo, quando o original possui falhas.
+- bulkhead ->  separa diferentes chamadas de serviço docliente para garantir que um serviço com falhas, não use todos os recursos do cliente.
