@@ -43,7 +43,7 @@ eureka.instance.preferIpAddress = true
 São implementados no cliente chamando um recurso remoto.
  
 - client-side load balancing -> balanceamento de carga do lado do cliente, onde este possui uma lista de instâncias em caching, quando detectado uma instância com erro, a mesma é retirada dessa lista.
-- Circuit breaker -> abre-se quando ocorre um número de falhas na chamada do serviço remoto, chamando o serviço alternativo enquano aberto e o original quando fechado.
+- Circuit breaker -> abre-se quando ocorre um número de falhas na chamada do serviço remoto, chamando o serviço alternativo enquano aberto e o original quando fechado. Base-se em um anel (tamanho do anel e configurado), caso a quantidade x do anel ocorra falha, o circuitbreaker e aberto. (1 bit é falha, 0 bit ok)
 - fallback -> serviço alternativo, quando o original possui falhas.
 - bulkhead ->  quebra as chamadas em pool de threads, afim de reduzir o risco de uma chamada lenta, derrube toda a aplicação. Os pools de threads agem como salas isoladas do seu serviço. Cada recurso remoto é segregado e atribuído ao pool, se um serviço estiver respondendo lentamente, o pool de threads para esse tipo de chamada ficará saturado e interromperá as solicitações em processamento. As chamadas de outros serviços, não são saturadas porque são atribuídas a outros pools de threads.
 
@@ -79,12 +79,12 @@ resilience4j:
   circuitbreaker:
     instances:
       licenseService:
-        registerHealthIndicator: true
-        ringBufferSizeInClosedState: 5
-        ringBufferSizeInHalfOpenState: 3
-        waitDurationInOpenState: 10s
-        failureRateThreshold: 50
-        recordExceptions:
+        registerHealthIndicator: true -> indica se vai expôr no actuator os indicadores
+        ringBufferSizeInClosedState: 5 -> define o tamanho do buffer para o anel fechado
+        ringBufferSizeInHalfOpenState: 3 -> define o tamanho do buffer do anel semiaberto
+        waitDurationInOpenState: 10s -> define a duração da espera em estado aberto
+        failureRateThreshold: 50 -> define o percentual limite da taxa de falha
+        recordExceptions: -> define as exceções que devem ser registradas como falha.
           - org.springframework.web.client.HttpServerErrorException
           - java.io.IOException
           - java.util.concurrent.TimeoutException
