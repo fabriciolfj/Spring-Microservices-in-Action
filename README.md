@@ -80,7 +80,7 @@ resilience4j:
     instances:
       licenseService:
         registerHealthIndicator: true -> indica se vai expôr no actuator os indicadores
-        ringBufferSizeInClosedState: 5 -> define o tamanho do buffer para o anel fechado
+        ringBufferSizeInClosedState: 5 -> define o tamanho do buffer do anel fechado
         ringBufferSizeInHalfOpenState: 3 -> define o tamanho do buffer do anel semiaberto
         waitDurationInOpenState: 10s -> define a duração da espera em estado aberto
         failureRateThreshold: 50 -> define o percentual limite da taxa de falha
