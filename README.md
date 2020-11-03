@@ -72,3 +72,21 @@ São implementados no cliente chamando um recurso remoto.
 	<artifactId>spring-boot-starter-aop</artifactId>
 </dependency>
 ```
+###### Exemplo de customização na configuração do resilience4j
+
+```
+resilience4j:
+  circuitbreaker:
+    instances:
+      licenseService:
+        registerHealthIndicator: true
+        ringBufferSizeInClosedState: 5
+        ringBufferSizeInHalfOpenState: 3
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        recordExceptions:
+          - org.springframework.web.client.HttpServerErrorException
+          - java.io.IOException
+          - java.util.concurrent.TimeoutException
+          - org.springframework.web.client.ResourceAccessException
+```	  
