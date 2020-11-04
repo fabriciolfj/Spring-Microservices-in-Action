@@ -89,4 +89,8 @@ resilience4j:
           - java.io.IOException
           - java.util.concurrent.TimeoutException
           - org.springframework.web.client.ResourceAccessException
-```	  
+```  
+
+###### Fallback
+- Deve possuir a mesma assinatura do método original, mais o parâmetro de exceção.
+- Caso o recuo chame outro serviço, anote-o com @CircuitBreaker
