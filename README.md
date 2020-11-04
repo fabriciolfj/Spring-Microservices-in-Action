@@ -131,7 +131,7 @@ resilience4j.retry:
 ###### Ratelimiter
 A idéia desse padrão é evitar de sobrecarregar o serviço, com mais chamadas que ele pode consumir em um determinado tempo.
 Existem 2 implementações:
-- AtomicRateLimiter -> usa-se tempo para controlar (default)
+- AtomicRateLimiter -> usa-se tempo para controlar (default), exemplo: permite x chamadas a cada y segundos.
 - SemaphoreBasedRateLimiter -> utiliza-se o java.util.concurrent.Semaphore, para gerenciar as threads
 
 
