@@ -143,4 +143,7 @@ resilience4j.ratelimiter:
         timeoutDuration: 1000ms -> define um tempo de espera da thread por permissão (default 5s)
         limitRefreshPeriod: 500 -> periodo de uma atualização de limite (default 500ns)
         limitForPeriod: 5 -> numero de permissões disponíveis durante um período de atualização do limite. (default 50)
-```	
+```
+###### Diferência bulkhead com ratelimiter
+-> bulkhead limitar o número de chamadas simultâneas de cada vez
+-> ratelimiter limita o número de chamadas totais em um determinado tempo.
