@@ -84,7 +84,7 @@ resilience4j:
         ringBufferSizeInHalfOpenState: 3 -> define o tamanho do buffer do anel semiaberto
         waitDurationInOpenState: 10s -> define o tempo de espera, antes de alterar o status de aberto para semiaberto.
         failureRateThreshold: 50 -> define o percentual limite da taxa de falha, quando atingir essa taxa o circuit breaker e aberto.
-        recordExceptions: -> define as exceções que devem ser registradas como falha.
+        recordExceptions: -> define as exceções que devem ser registradas como falha. (se não definir, todas as exceções são contabilizadas como falha).
           - org.springframework.web.client.HttpServerErrorException
           - java.io.IOException
           - java.util.concurrent.TimeoutException
