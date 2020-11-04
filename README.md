@@ -82,7 +82,7 @@ resilience4j:
         registerHealthIndicator: true -> indica se vai expôr no actuator os indicadores
         ringBufferSizeInClosedState: 5 -> define o tamanho do buffer do anel fechado
         ringBufferSizeInHalfOpenState: 3 -> define o tamanho do buffer do anel semiaberto
-        waitDurationInOpenState: 10s -> define a duração da espera em estado aberto
+        waitDurationInOpenState: 10s -> define o tempo de espera, antes de alterar o status de aberto para semiaberto.
         failureRateThreshold: 50 -> define o percentual limite da taxa de falha
         recordExceptions: -> define as exceções que devem ser registradas como falha.
           - org.springframework.web.client.HttpServerErrorException
