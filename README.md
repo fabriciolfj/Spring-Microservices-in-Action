@@ -124,6 +124,7 @@ resilience4j.retry:
         waitDuration: 10000 -> tempo entre as retentativas (default 500ms)
 	retryOnResultPredica -> precisa de um predicate para avaliar o resultado, se deve retentar ou não
 	retryOnExceptionPredica -> avalia a exceção se deve tentar novamente ou não.
+	ignoreExceptions -> passa uma lista de exceções que devem ser ignoradas, ou seja, não disparar o retry.
         retryExceptions:
           - java.util.concurrent.TimeoutException -> exceções que o sistema irá disparar as retentativas. (default e vazio)
 
