@@ -104,14 +104,14 @@ Existem 2 implementações:
 resilience4j.bulkhead:
     instances:
       bulkheadLicenseService:
-        maxWaitDuration: 10ms -> define o máximo de tempo que um segumento (thread) deve ser bloqueado ao tentar entrar.
-        maxConcurrentCalls: 20 -> permite definir a quantidade máxima de chamdas simultâneas.
+        maxWaitDuration: 10ms -> define o máximo de tempo que um segumento (thread) deve ser bloqueado ao tentar entrar num nulkhead saturado. (default 0)
+        maxConcurrentCalls: 20 -> permite definir a quantidade máxima de chamdas simultâneas. (default é 25)
 
 resilience4j.thread-pool-bulkhead:
     instances:
       bulkheadLicenseService:
-        maxThreadPoolSize: 1 -> permite definir o número máximo de threads no pool
-        coreThreadPoolSize: 1 -> permite definir o tamanho do pool principal
-        queueCapacity: 1 -> permite definir a capacidade da fila
-        keepAliveDuration: 20ms -> permite definir o tempo máximo que os threads ociosos esperarão por novas tarefas antes de terminar.
+        maxThreadPoolSize: 1 -> permite definir o número máximo de threads no pool (default 0)
+        coreThreadPoolSize: 1 -> permite definir o tamanho do pool principal (default 0)
+        queueCapacity: 1 -> permite definir a capacidade da fila (default 100)
+        keepAliveDuration: 20ms -> permite definir o tempo máximo que os threads ociosos esperarão por novas tarefas antes de terminar. Isso ocorre quando o número de threads é maior que o segmento principal. maxThreadPoolSize > coreThreadPoolSize (default 20ms)
 ```	
