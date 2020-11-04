@@ -128,3 +128,18 @@ resilience4j.retry:
         retryExceptions:
           - java.util.concurrent.TimeoutException -> exceções que o sistema irá disparar as retentativas. (default e vazio)
 
+###### Ratelimiter
+A idéia desse padrão é parar de sobrecarregar o serviço com mais chamadas que pode consumir em um determinado tempo.
+Existem 2 implementações:
+- AtomicRateLimiter -> usa-se tempo para controlar (default)
+- SemaphoreBasedRateLimiter -> utiliza-se o java.util.concurrent.Semaphore, para gerenciar as threads
+
+
+```
+resilience4j.ratelimiter:
+    instances:
+      licenseService:
+        timeoutDuration: 1000ms -> define um tempo de espera por permissão
+        limitRefreshPeriod: 500 -> periodo de uma atualização de limite
+        limitForPeriod: 5 -> numero de permissões disponíveis durante um período de atualização do limite.
+```	
