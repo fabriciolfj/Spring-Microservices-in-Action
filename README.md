@@ -114,4 +114,14 @@ resilience4j.thread-pool-bulkhead:
         coreThreadPoolSize: 1 -> permite definir o tamanho do pool principal (default 0)
         queueCapacity: 1 -> permite definir a capacidade da fila (default 100)
         keepAliveDuration: 20ms -> permite definir o tempo máximo que os threads ociosos esperarão por novas tarefas antes de terminar. Isso ocorre quando o número de threads é maior que o segmento principal. maxThreadPoolSize > coreThreadPoolSize (default 20ms)
-```	
+```
+
+###### Retry
+resilience4j.retry:
+    instances:
+      retryLicenseService:
+        maxRetryAttempts: 5 -> numero máximo de retentativas
+        waitDuration: 10000 -> tempo entre as retentativas
+        retryExceptions:
+          - java.util.concurrent.TimeoutException -> exceções que o sistema irá disparar as retentativas.
+
