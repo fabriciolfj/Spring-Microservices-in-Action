@@ -94,3 +94,8 @@ resilience4j:
 ###### Fallback
 - Deve possuir a mesma assinatura do método original, mais o parâmetro de exceção.
 - Caso o recuo chame outro serviço, anote-o com @CircuitBreaker
+
+###### Bulkhead
+Existem 2 implementações:
+- Semafaro:  limita o número de solicitações ao serviço, uma vez que o limite é atingido, ele começa a rejeitar os pedidos.
+- ThreadPool Bulkhead: utiliza uma fila delimitada e um pool fixo. Essa abordagem só rejeita quando o pool e a fila estiverem cheias.
