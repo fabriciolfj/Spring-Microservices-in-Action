@@ -1,0 +1,1 @@
+for ((i=1;i<=100;i++)); do   curl -v "localhost:8080/v1/organization/d898a142-de44-466c-8c88-9ceb2c2429d3/license"; done

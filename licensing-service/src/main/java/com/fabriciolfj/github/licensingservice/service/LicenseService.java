@@ -9,11 +9,19 @@ import com.fabriciolfj.github.licensingservice.repository.LicenseRepository;
 import com.fabriciolfj.github.licensingservice.service.client.OrganizationDiscoveryClient;
 import com.fabriciolfj.github.licensingservice.service.client.OrganizationFeignClient;
 import com.fabriciolfj.github.licensingservice.service.client.OrganizationRestTemplateClient;
+import com.fabriciolfj.github.licensingservice.utils.UserContextHolder;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeoutException;
 
 @Slf4j
 @Service
@@ -26,6 +34,17 @@ public class LicenseService {
     private final OrganizationDiscoveryClient organizationDiscoveryClient;
     private final OrganizationFeignClient organizationFeignClient;
     private final OrganizationRestTemplateClient organizationRestTemplateClient;
+
+    @CircuitBreaker(name = "licenseService", fallbackMethod = "buildFallbackLicenseList")
+    @Retry(name = "retryLicenseService", fallbackMethod = "buildFallbackLicenseList")
+    //@Bulkhead(name = "bulkheadLicenseService", type= Bulkhead.Type.THREADPOOL, fallbackMethod = "buildFallbackLicenseList")
+    //@RateLimiter(name = "licenseService", fallbackMethod = "buildFallbackLicenseList")
+    public List<License> getLicensesByOrganization(String organizationId) throws TimeoutException {
+        log.debug("getLicensesByOrganization Correlation id: {}",
+                UserContextHolder.getContext().getCorrelationId());
+        randomlyRunLong();
+        return licenseRepository.findByOrganizationId(organizationId);
+    }
 
     public License getLicense(final String licenseId, final String organizationId, final String clientType){
         var license = getLicense(licenseId, organizationId);
@@ -88,5 +107,34 @@ public class LicenseService {
             default:
                 return organizationRestTemplateClient.getOrganization(organizationId);
         }
+    }
+
+    private void randomlyRunLong() {
+        Random rand = new Random();
+        int randomNum = rand.nextInt((3 - 1) + 1) + 1;
+        try {
+            if (randomNum == 3) sleep();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void sleep() throws TimeoutException{
+        try {
+            System.out.println("Sleep");
+            Thread.sleep(5000);
+            throw new java.util.concurrent.TimeoutException();
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+        }
+    }
+
+    private List<License> buildFallbackLicenseList(String organizationId, Throwable t){
+        List<License> fallbackList = new ArrayList<>();
+        License license = new License();
+        license.setLicenseId("0000000-00-00000");
+        license.setOrganizationId(organizationId);
+        license.setProductName("Sorry no licensing information currently available");
+        fallbackList.add(license);
+        return fallbackList;
     }
 }

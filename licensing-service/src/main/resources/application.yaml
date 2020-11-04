@@ -1,11 +1,19 @@
 management:
+  endpoint:
+    health:
+      show-details: always
   endpoints:
     web:
-      base-path: /
-    enabled-by-default: false
-    health.enabled: true
-    health.show-details: true
+      exposure:
+        include:
+          - '*'
   health:
+    circuitbreakers:
+      enabled: true
+    bulkhead:
+      enabled: true
+    ratelimiters:
+      enabled: true
     db:
       enabled: false
     diskspace:
