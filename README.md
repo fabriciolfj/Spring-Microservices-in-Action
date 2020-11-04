@@ -139,7 +139,7 @@ Existem 2 implementações:
 resilience4j.ratelimiter:
     instances:
       licenseService:
-        timeoutDuration: 1000ms -> define um tempo de espera por permissão
-        limitRefreshPeriod: 500 -> periodo de uma atualização de limite
-        limitForPeriod: 5 -> numero de permissões disponíveis durante um período de atualização do limite.
+        timeoutDuration: 1000ms -> define um tempo de espera da thread por permissão (default 5s)
+        limitRefreshPeriod: 500 -> periodo de uma atualização de limite (default 500ns)
+        limitForPeriod: 5 -> numero de permissões disponíveis durante um período de atualização do limite. (default 50)
 ```	
