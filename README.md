@@ -120,8 +120,8 @@ resilience4j.thread-pool-bulkhead:
 resilience4j.retry:
     instances:
       retryLicenseService:
-        maxRetryAttempts: 5 -> numero máximo de retentativas
-        waitDuration: 10000 -> tempo entre as retentativas
+        maxRetryAttempts: 5 -> numero máximo de retentativas (default 3)
+        waitDuration: 10000 -> tempo entre as retentativas (default 500ms)
         retryExceptions:
-          - java.util.concurrent.TimeoutException -> exceções que o sistema irá disparar as retentativas.
+          - java.util.concurrent.TimeoutException -> exceções que o sistema irá disparar as retentativas. (default e vazio)
 
