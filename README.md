@@ -122,6 +122,8 @@ resilience4j.retry:
       retryLicenseService:
         maxRetryAttempts: 5 -> numero máximo de retentativas (default 3)
         waitDuration: 10000 -> tempo entre as retentativas (default 500ms)
+	retryOnResultPredica -> precisa de um predicate para avaliar o resultado, se deve retentar ou não
+	retryOnExceptionPredica -> avalia a exceção se deve tentar novamente ou não.
         retryExceptions:
           - java.util.concurrent.TimeoutException -> exceções que o sistema irá disparar as retentativas. (default e vazio)
 
