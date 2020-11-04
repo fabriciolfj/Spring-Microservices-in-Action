@@ -129,7 +129,7 @@ resilience4j.retry:
           - java.util.concurrent.TimeoutException -> exceções que o sistema irá disparar as retentativas. (default e vazio)
 
 ###### Ratelimiter
-A idéia desse padrão é parar de sobrecarregar o serviço com mais chamadas que pode consumir em um determinado tempo.
+A idéia desse padrão é evitar de sobrecarregar o serviço, com mais chamadas que ele pode consumir em um determinado tempo.
 Existem 2 implementações:
 - AtomicRateLimiter -> usa-se tempo para controlar (default)
 - SemaphoreBasedRateLimiter -> utiliza-se o java.util.concurrent.Semaphore, para gerenciar as threads
