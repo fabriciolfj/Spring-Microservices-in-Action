@@ -181,7 +181,7 @@ spring:
           uri: lb://organization-service (nome do serviço dentro do eureka)                        
           predicates:                                           
           - Path=/organization/** (vamos aceitar qualquer coisa que vir depois de organization)                               
-          filters: #pode-se aplicar políticas, como segurança por exemplo.                                              
+          filters: #pode-se aplicar políticas, como segurança por exemplo. Operadores: AddRequestHeader, RedirectTo e etc                                             
           - RewritePath=/organization/(?<path>.*), /$\{path} (vamos rescrever o caminho, colocando no caminho original, no caso vai tirar /organization/qualquer coisa para /qualquer coisa
         - id: licensing-service                                 
           uri: lb://licensing-service                           
