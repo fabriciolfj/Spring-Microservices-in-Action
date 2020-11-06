@@ -164,3 +164,6 @@ Exemplo:
 - http://localhost:8072: uri do gateway
 - organization-service: qual o serviço
 - v1/organization: path do serviço
+
+Para ver as rotas mapeadas, podemos verificar através da url:
+- http://localhost:8072/actuator/gateway/routes
