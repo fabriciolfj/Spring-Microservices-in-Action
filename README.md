@@ -167,3 +167,26 @@ Exemplo:
 
 Para ver as rotas mapeadas, podemos verificar através da url:
 - http://localhost:8072/actuator/gateway/routes
+
+Caso não queriamos usar o id do serviço gerado dentro do eureka, podemos personalizar manualmente o path, definindo rotas:
+
+```
+spring:                                                         
+  cloud:                                                        
+    loadbalancer.ribbon.enabled: false                          
+    gateway:                                                    
+        routes:                                                 
+        - id: organization-service # id do serviço (opcional)                              
+          uri: lb://organization-service (nome do serviço dentro do eureka)                        
+          predicates:                                           
+          - Path=/organization/** (vamos aceitar qualquer coisa que vir depois de organization)                               
+          filters:                                              
+          - RewritePath=/organization/(?<path>.*), /$\{path} (vamos rescrever o caminho, colocando no caminho original, no caso vai tirar /organization/qualquer coisa para /qualquer coisa
+        - id: licensing-service                                 
+          uri: lb://licensing-service                           
+          predicates:                                           
+          - Path=/license/**                                    
+          filters:                                              
+          - RewritePath=/license/(?<path>.*), /$\{path}         
+                                                                
+```
