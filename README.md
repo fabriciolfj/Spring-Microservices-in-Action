@@ -185,7 +185,7 @@ spring:
           - RewritePath=/organization/(?<path>.*), /$\{path} (vamos rescrever o caminho, colocando no caminho original, no caso vai tirar /organization/qualquer coisa para /qualquer coisa
         - id: licensing-service                                 
           uri: lb://licensing-service                           
-          predicates:  # nos permitem verificar se as solicitações preenchem um conjunto de condiçoes dadas, antes de executar ou processar uma solicitação.                                         
+          predicates:  # nos permitem verificar se as solicitações preenchem um conjunto de condiçoes dadas, antes de executar ou processar uma solicitação. Existem vários operadores lógicos que podemos utilizar, por exemplo:Before=Data, After=Data, Header=x-Request e etc                                      
           - Path=/license/**                                    
           filters:                                              
           - RewritePath=/license/(?<path>.*), /$\{path}         
