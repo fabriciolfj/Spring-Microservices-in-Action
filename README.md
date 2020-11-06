@@ -191,3 +191,5 @@ spring:
           - RewritePath=/license/(?<path>.*), /$\{path}         
                                                                 
 ```
+- Atualizando dinamicamente as rotas (apos commitar a mudança no arquivo de configuração do gateway):
+http://configserver:8071/actuator/gateway/refresh
