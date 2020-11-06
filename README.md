@@ -147,3 +147,20 @@ resilience4j.ratelimiter:
 ###### Diferência bulkhead com ratelimiter
 -> bulkhead limitar o número de chamadas simultâneas de cada vez
 -> ratelimiter limita o número de chamadas totais em um determinado tempo.
+
+
+###### Spring cloud gateway
+- Podemos habilitar o uso de um service discovery para mapear as rotas:
+```
+spring:
+  cloud:
+    gateway:
+      discovery.locator:
+        enabled: true
+	lowerCaseServiceId: true
+````
+Exemplo: 
+- http://localhost:8072/organization-service/v1/organization
+- http://localhost:8072: uri do gateway
+- organization-service: qual o serviço
+- v1/organization: path do serviço
