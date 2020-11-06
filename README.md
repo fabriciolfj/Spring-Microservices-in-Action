@@ -169,6 +169,7 @@ Para ver as rotas mapeadas, podemos verificar através da url:
 - http://localhost:8072/actuator/gateway/routes
 
 Caso não queriamos usar o id do serviço gerado dentro do eureka, podemos personalizar manualmente o path, definindo rotas:
+obs remova a configuração acima nesse caso.
 
 ```
 spring:                                                         
