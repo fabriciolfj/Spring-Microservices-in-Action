@@ -3,6 +3,9 @@ package com.fabriciolfj.github.licensingservice.utils;
 import org.springframework.util.Assert;
 
 public class UserContextHolder {
+    /*
+    * A construção TheadLocal nos permite armazenar dados que serão acessíveis apenas por um segmento específico.
+    * */
     private static final ThreadLocal<UserContext> userContext = new ThreadLocal<UserContext>();
 
     public static final UserContext getContext(){
