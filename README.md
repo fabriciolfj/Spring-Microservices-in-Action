@@ -193,3 +193,5 @@ spring:
 ```
 - Atualizando dinamicamente as rotas (apos commitar a mudança no arquivo de configuração do gateway):
 http://configserver:8071/actuator/gateway/refresh
+
+- Gateway existe o pŕe-filtro e o pós-filtro, caso queira validar os headers da requisição do cliente ou inserir alguma informação no header de resposta por exemplo.
