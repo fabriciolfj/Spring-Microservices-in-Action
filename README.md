@@ -213,3 +213,24 @@ http://configserver:8071/actuator/gateway/refresh
 - Autenticação vs Autorização
   - autenticação -> é o ato de um usuário provar quem é ele, fornecendo suas credenciais.
   - autorização -> determina se um usuário pode fazer o que está tentando fazer.
+  
+Para configurar sua aplicação usamos:
+- Extenda a classe AuthorizationServerConfigurerAdapter para configuração dos clients.
+- Extenda a classe WebSecurityConfigurerAdapter para configuração dos usuários.
+
+Para configurar/proteger o microservice:
+- Adicione as depêndencias abaixo
+```
+<!--A -->
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-oauth2</artifactId>
+</dependency>
+
+<!--B -->
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-security</artifactId>
+</dependency>
+```
+- Configure-o para chamar o authorization-service.
