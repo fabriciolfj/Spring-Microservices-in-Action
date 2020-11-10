@@ -195,3 +195,11 @@ spring:
 http://configserver:8071/actuator/gateway/refresh
 
 - Gateway existe o pŕe-filtro e o pós-filtro, caso queira validar os headers da requisição do cliente ou inserir alguma informação no header de resposta por exemplo.
+
+###### OAuth2
+- Permite que os denvolvedores de aplicativos se integrem facilmente com provedores terceiros e façam autenticação/autorização do usuário com esses serviços, sem trafegar suas credenciais (usuario e senha).
+- É uma estrutura baseada em tokens, que divide a segurança em quatro componentes:
+ - Recurso protegido.
+ - Proprietário dos recursos -> define quais aplicativos podem chamar seu serviço, quais usuários podem acessa-lo e o que podem fazer.
+ - Aplicativo -> aplicação que vai chamar o serviço em nome do usuário.
+ - Servidor de autenticação OAuth2 -> é o intermediário entre o aplicativo e os serviços que serão consumidos. OAuth2 permite que o usuário se autentique, sem ter que passar suas credenciais de usuário para todos os serviços.
