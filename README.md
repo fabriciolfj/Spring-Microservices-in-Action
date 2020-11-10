@@ -237,4 +237,4 @@ Para configurar/proteger o microservice:
 ```
 security.oauth2.resource.userInfoUri = http://authenticationservice:8082/user
 ```
-- Anote o servicço com a  anotação @EnableResourceServer, onde diz ao spring security que o serviço é um recurso protegido. O @EnableResourceServer impõe um filtro que intercepta todas as chamadas recebidas para o serviço, verificando se há um token de acesso presente no cabeçalho e  em seguida chama de volta a url definida em security.oauth2.resource.userInfoUri.
+- Anote o serviço com anotação @EnableResourceServer, onde diz ao spring security que o mesmo é um recurso protegido. O @EnableResourceServer impõe um filtro que intercepta todas as chamadas recebidas, verificando se há um token de acesso presente no cabeçalho e em seguida chama de volta a url definida em security.oauth2.resource.userInfoUri para validar.
