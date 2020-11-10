@@ -203,3 +203,13 @@ http://configserver:8071/actuator/gateway/refresh
   - Proprietário dos recursos -> define quais aplicativos podem chamar seu serviço, quais usuários podem acessa-lo e o que podem fazer.
   - Aplicativo -> aplicação que vai chamar o serviço em nome do usuário.
   - Servidor de autenticação OAuth2 -> é o intermediário entre o aplicativo e os serviços que serão consumidos. OAuth2 permite que o usuário se autentique, sem ter que passar suas credenciais de usuário para todos os serviços.
+  
+- Tipos de grants do oauth2:
+  - Password
+  - Client credential
+  - Authorization code
+  - implicit
+
+- Autenticação vs Autorização
+  - autenticação -> é o ato de um usuário provar quem é ele, fornecendo suas credenciais.
+  - autorização -> determina se um usuário pode fazer o que está tentando fazer.
