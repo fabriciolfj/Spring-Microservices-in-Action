@@ -241,7 +241,7 @@ security.oauth2.resource.userInfoUri = http://authenticationservice:8082/user
 
 - Mesmo implementando o oauth2 junto com a malha de serviços, recomenda-se:
   - Use https para comunicação entre os microservices.
-  - Limite o número de portas
+  - Limite o número de portas (entradas e saidas)
   - O endpoints dos serviços, nunca devem ser executados pelo cliente diretamente, deve-se passar por um gateway.
   - Configure o servidor para aceitar apenas o trafego pelo gateway.
   - Separe os serviços em zonas publicas e privadas.
