@@ -195,3 +195,46 @@ spring:
 http://configserver:8071/actuator/gateway/refresh
 
 - Gateway existe o pŕe-filtro e o pós-filtro, caso queira validar os headers da requisição do cliente ou inserir alguma informação no header de resposta por exemplo.
+
+###### OAuth2
+- Permite que os denvolvedores de aplicativos se integrem facilmente com provedores terceiros e façam autenticação/autorização do usuário com esses serviços, sem trafegar suas credenciais (usuario e senha).
+- É uma estrutura baseada em tokens, que divide a segurança em quatro componentes:
+  - Recurso protegido.
+  - Proprietário dos recursos -> define quais aplicativos podem chamar seu serviço, quais usuários podem acessa-lo e o que podem fazer.
+  - Aplicativo -> aplicação que vai chamar o serviço em nome do usuário.
+  - Servidor de autenticação OAuth2 -> é o intermediário entre o aplicativo e os serviços que serão consumidos. OAuth2 permite que o usuário se autentique, sem ter que passar suas credenciais de usuário para todos os serviços.
+  
+- Tipos de grants do oauth2:
+  - Password
+  - Client credential
+  - Authorization code
+  - implicit
+
+- Autenticação vs Autorização
+  - autenticação -> é o ato de um usuário provar quem é ele, fornecendo suas credenciais.
+  - autorização -> determina se um usuário pode fazer o que está tentando fazer.
+  
+Para configurar sua aplicação usamos:
+- Extenda a classe AuthorizationServerConfigurerAdapter para configuração dos clients.
+- Extenda a classe WebSecurityConfigurerAdapter para configuração dos usuários.
+
+Para configurar/proteger o microservice:
+- Adicione as depêndencias abaixo
+```
+<!--A -->
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-oauth2</artifactId>
+</dependency>
+
+<!--B -->
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-security</artifactId>
+</dependency>
+```
+- Configure-o para chamar o authorization-service.
+```
+security.oauth2.resource.userInfoUri = http://authenticationservice:8082/user
+```
+- Anote o serviço com anotação @EnableResourceServer, onde diz ao spring security que o mesmo é um recurso protegido. O @EnableResourceServer impõe um filtro que intercepta todas as chamadas recebidas, verificando se há um token de acesso presente no cabeçalho e em seguida chama de volta a url definida em security.oauth2.resource.userInfoUri para validar.
