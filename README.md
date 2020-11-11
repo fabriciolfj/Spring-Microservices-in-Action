@@ -238,3 +238,10 @@ Para configurar/proteger o microservice:
 security.oauth2.resource.userInfoUri = http://authenticationservice:8082/user
 ```
 - Anote o serviço com anotação @EnableResourceServer, onde diz ao spring security que o mesmo é um recurso protegido. O @EnableResourceServer impõe um filtro que intercepta todas as chamadas recebidas, verificando se há um token de acesso presente no cabeçalho e em seguida chama de volta a url definida em security.oauth2.resource.userInfoUri para validar.
+
+- Mesmo implementando o oauth2 junto com a malha de serviços, recomenda-se:
+  - Use https para comunicação entre os microservices.
+  - Limite o número de portas (entradas e saidas)
+  - O endpoints dos serviços, nunca devem ser executados pelo cliente diretamente, deve-se passar por um gateway.
+  - Configure o servidor para aceitar apenas o trafego pelo gateway.
+  - Separe os serviços em zonas publicas e privadas.
