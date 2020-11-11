@@ -10,12 +10,12 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class OrganizationRestTemplateClient {
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     public Organization getOrganization(String organizationId){
         ResponseEntity<Organization> restExchange =
                 restTemplate.exchange(
-                        "http://organization-service/v1/organization/{organizationId}",
+                        "http://gateway:8072/organization/v1/organization/{organizationId}",
                         HttpMethod.GET,
                         null, Organization.class, organizationId);
 

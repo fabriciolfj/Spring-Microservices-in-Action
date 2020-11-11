@@ -13,7 +13,7 @@ public class UserContextInterceptor implements ClientHttpRequestInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(UserContextInterceptor.class);
 
-    @Override //é invocado antes que da chamada do restteamplte
+    @Override //é invocado antes que da chamada do resttemplate, e inseri os headers nele
     public ClientHttpResponse intercept(HttpRequest httpRequest, byte[] bytes, ClientHttpRequestExecution clientHttpRequestExecution) throws IOException {
         var headers = httpRequest.getHeaders();
         headers.add(UserContext.CORRELATION_ID, UserContextHolder.getContext().getCorrelationId());

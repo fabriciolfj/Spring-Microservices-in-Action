@@ -22,7 +22,7 @@ public class UserContextFilter implements Filter {
         UserContextHolder.getContext().setCorrelationId(  httpServletRequest.getHeader(com.fabriciolfj.github.licensingservice.utils.UserContext.CORRELATION_ID) );
         UserContextHolder.getContext().setUserId(httpServletRequest.getHeader(com.fabriciolfj.github.licensingservice.utils.UserContext.USER_ID));
         UserContextHolder.getContext().setAuthToken(httpServletRequest.getHeader(com.fabriciolfj.github.licensingservice.utils.UserContext.AUTH_TOKEN));
-        UserContextHolder.getContext().setOrganizationId(httpServletRequest.getHeader(com.fabriciolfj.github.licensingservice.utils.UserContext.ORGANIZATION_ID));
+        UserContextHolder.getContext().setOrgId(httpServletRequest.getHeader(com.fabriciolfj.github.licensingservice.utils.UserContext.ORG_ID));
 
         logger.debug("UserContextFilter Correlation id: {}", UserContextHolder.getContext().getCorrelationId());
 

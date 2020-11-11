@@ -1,6 +1,6 @@
 package com.fabriciolfj.github.licensingservice.service;
 
-import com.fabriciolfj.github.licensingservice.config.ServiceConfig;
+import com.fabriciolfj.github.licensingservice.config.PropertiesConfig;
 import com.fabriciolfj.github.licensingservice.controller.exceptions.LicenseNotfound;
 import com.fabriciolfj.github.licensingservice.controller.exceptions.OrganizationNotfound;
 import com.fabriciolfj.github.licensingservice.model.License;
@@ -30,7 +30,7 @@ public class LicenseService {
 
     private final MessageSource messages;
     private final LicenseRepository licenseRepository;
-    private final ServiceConfig serviceConfig;
+    private final PropertiesConfig propertiesConfig;
     private final OrganizationDiscoveryClient organizationDiscoveryClient;
     private final OrganizationFeignClient organizationFeignClient;
     private final OrganizationRestTemplateClient organizationRestTemplateClient;
@@ -56,12 +56,12 @@ public class LicenseService {
         license.setContactEmail(organization.getContactEmail());
         license.setContactPhone(organization.getContactPhone());
 
-        return license.withComment(serviceConfig.getProperty());
+        return license.withComment(propertiesConfig.getProperty());
     }
 
     public License getLicense(final String licenseId, final String organizationId) {
         return licenseRepository.findByOrganizationIdAndLicenseId(organizationId, licenseId)
-                .map(l -> l.withComment(serviceConfig.getProperty()))
+                .map(l -> l.withComment(propertiesConfig.getProperty()))
                 .orElseThrow(() ->
                         new LicenseNotfound(String.format(messages.getMessage("license.search.error.message", null, null),licenseId, organizationId)));
     }
@@ -70,12 +70,12 @@ public class LicenseService {
         license.setLicenseId(UUID.randomUUID().toString());
         licenseRepository.save(license);
 
-        return license.withComment(serviceConfig.getProperty());
+        return license.withComment(propertiesConfig.getProperty());
     }
 
     public License updateLicense(final License license) {
         licenseRepository.save(getLicense(license.getLicenseId(), license.getOrganizationId()));
-        return license.withComment(serviceConfig.getProperty());
+        return license.withComment(propertiesConfig.getProperty());
     }
 
     public String deleteLicense(final String licenseId) {
