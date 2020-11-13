@@ -31,7 +31,6 @@ public class JWTTokenStoreConfig {
         return defaultTokenServices;
     }
 
-
     //JWT
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
