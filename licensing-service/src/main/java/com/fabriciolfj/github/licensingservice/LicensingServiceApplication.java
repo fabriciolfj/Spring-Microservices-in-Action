@@ -1,12 +1,17 @@
 package com.fabriciolfj.github.licensingservice;
 
+import com.fabriciolfj.github.licensingservice.events.model.OrganizationChangeModel;
 import com.fabriciolfj.github.licensingservice.service.client.OrganizationFeignClient;
 import com.fabriciolfj.github.licensingservice.utils.UserContextInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
@@ -17,11 +22,13 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
+@Slf4j
 @EnableDiscoveryClient
 @EnableFeignClients(basePackageClasses = {OrganizationFeignClient.class})
 @SpringBootApplication
 @RefreshScope
 @EnableResourceServer
+@EnableBinding(Sink.class)
 public class LicensingServiceApplication {
 
 	public static void main(String[] args) {
@@ -48,6 +55,11 @@ public class LicensingServiceApplication {
 		}
 
 		return template;
+	}
+
+	@StreamListener(Sink.INPUT)
+	public void loggerSink(final OrganizationChangeModel model) {
+		log.info("Received an {} event for organization id {}", model.getAction(), model.getOrganizationId());
 	}
 
 }
