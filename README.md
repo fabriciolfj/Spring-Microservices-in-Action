@@ -250,6 +250,6 @@ security.oauth2.resource.userInfoUri = http://authenticationservice:8082/user
 - Projeto que abstrai a publicação e consume de mensagens, envolvendo ferramentas de mensageria, como: rabbitmq e kakfa.
 - A publicação e consumo de uma mensagem, envolve 4 componentes:
   - Source:a fonte de dados que representa a mensagem (um pojo java), onde é serializada para json por padrão.
-  - Channel: uma abstração sobre a fila ou seja, é a fila usada para enviar e receber mensagens.
+  - Channel: uma abstração sobre a fila ou seja, é a fila usada para enviar e receber mensagens (ex: canal output vinculado a fila test).
   - Binder: é o codigo que fala com a plataforma de mensageria.
   - Sink: ouvinte do canal, ou seja, consume a mensagem da fila, deserializa a mesma para o pojo envolvido.
