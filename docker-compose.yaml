@@ -122,6 +122,28 @@ services:
     networks:
       - backend
 
+  zookeeper:
+    container_name: zookeeper_container
+    image: debezium/zookeeper:1.1
+    ports:
+      - 2181:2181
+      - 2888:2888
+      - 3888:3888
+    networks:
+      - backend
+
+  kafka:
+    container_name: kafka_container
+    image: debezium/kafka:1.1
+    ports:
+      - 9092:9092
+    links:
+      - zookeeper
+    environment:
+      - ZOOKEEPER_CONNECT=zookeeper:2181
+    networks:
+      - backend
+
 networks:
   backend:
     driver: bridge
