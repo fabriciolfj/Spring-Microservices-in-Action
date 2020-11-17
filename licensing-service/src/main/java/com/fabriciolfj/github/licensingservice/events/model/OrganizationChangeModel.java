@@ -1,10 +1,9 @@
 package com.fabriciolfj.github.licensingservice.events.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-@Getter @Setter @ToString
+@Data
+@Builder
 public class OrganizationChangeModel {
 	private String type;
 	private String action;

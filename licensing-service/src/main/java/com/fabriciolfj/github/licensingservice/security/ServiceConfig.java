@@ -1,15 +1,19 @@
 package com.fabriciolfj.github.licensingservice.security;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@Getter
 public class ServiceConfig {
 
     @Value("${signing.key}")
     private String jwtSigningKey;
 
-    public String getJwtSigningKey() {
-        return jwtSigningKey;
-    }
+    @Value("${redis.server}")
+    private String redisServer="";
+
+    @Value("${redis.port}")
+    private String redisPort="";
 }

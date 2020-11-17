@@ -1,5 +1,6 @@
 package com.optimagrowth.organization;
 
+import com.optimagrowth.organization.clients.CustomChannels;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -9,7 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 
 @SpringBootApplication
 @RefreshScope
-@EnableBinding(Source.class)
+@EnableBinding(CustomChannels.class)
 @EnableResourceServer //fala que esse serviço é um recurso protegido.
 public class OrganizationServiceApplication {
 
