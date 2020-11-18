@@ -258,7 +258,7 @@ security.oauth2.resource.userInfoUri = http://authenticationservice:8082/user
 Para rastrear as requisições/fluxo da aplicação, utilizamoso sleuth, que gera um hash que representa toda a transação, mostrando por quais serviços ela passou. O hash é dividido em:
 - Trace id: é o número único que representa uma transação inteira.
 - Span id: e um id que representa parte da transação global. São relevantes quando se integra ao zipkin por exemplo.
-- Export: permite determinar quando e como enviar uma transação para o zipkin por exemplo.
+- Export: permite determinar quando e como enviar uma transação para o zipkin por exemplo (presente no projeto)
 
 ###### Centralização de logs
 Utilizaremos a stack ELK (elasticsearch, logstash e kibana), para isso configuramos o logstash nos nossos microserviços.
