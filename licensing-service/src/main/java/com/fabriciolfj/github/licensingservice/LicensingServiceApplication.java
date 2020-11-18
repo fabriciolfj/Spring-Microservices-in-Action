@@ -50,7 +50,7 @@ public class LicensingServiceApplication {
 
 	@Primary
 	@Bean
-	@LoadBalanced
+	//@LoadBalanced
 	public RestTemplate getCustomRestTemplate() {
 		var template = new RestTemplate();
 		var interceptors = template.getInterceptors();
