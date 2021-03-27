@@ -13,7 +13,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.DELETE, "/v1/organization/**").hasRole("ADMIN")//restringindo que nesse endpoint, verbo delete, apenas usuarios com a permissão admin
-                .anyRequest().authenticated(); //demais endpoints, precisa de um usuário autenticado.
+                .anyRequest().permitAll(); //demais endpoints, precisa de um usuário autenticado.
 
     }
 }
