@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.redis.core.RedisHash;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.Id;
@@ -13,7 +12,6 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@RedisHash("organization")
 public class Organization extends RepresentationModel<Organization> {
 
     @Id

@@ -144,14 +144,6 @@ services:
     networks:
       - backend
 
-  redisserver:
-    image: redis:alpine
-    ports:
-      - 6379:6379
-    networks:
-      backend:
-        aliases:
-          - "redis"
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
     container_name: elasticsearch

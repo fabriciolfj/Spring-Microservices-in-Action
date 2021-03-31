@@ -1,0 +1,22 @@
+Comandos:
+
+chmod 400 <key>.pem
+copiar arquivos para a ec2: scp -r -i elk.pem /home/spark/Documentos/repositorios/Spring-Microservices-in-Action/AWS ec2-user@ec2-3-136-158-142.us-east-2.compute.amazonaws.com:~/
+conectar: ssh -i elk.pem ec2-user@ec2-3-136-158-142.us-east-2.compute.amazonaws.com
+
+Instalando docker e docker-compose no ec2
+- sudo yum update
+- sudo yum install docker
+- sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose > /dev/null
+- sudo chmod +x /usr/local/bin/docker-compose
+- sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+- sudo service docker start
+
+Configurando o usuario
+aws configure
+
+
+Eks
+Criando um cluster:  eksctl create cluster --name=ostock-dev-cluster --nodes=1 --node-type=t2.micro
+
+Deletando um cluster: eksctl delete cluster nome
