@@ -262,3 +262,4 @@ Para rastrear as requisições/fluxo da aplicação, utilizamoso sleuth, que ger
 
 ###### Centralização de logs
 Utilizaremos a stack ELK (elasticsearch, logstash e kibana), para isso configuramos o logstash nos nossos microserviços.
+
